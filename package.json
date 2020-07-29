@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --env.production",
-    "start": "webpack-dev-server",
-    "dev": "webpack-dev-server --mode development --config webpack.config.js"
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development"
   },
   "keywords": [],
   "author": "",

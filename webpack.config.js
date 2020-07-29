@@ -1,8 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const loader = require('sass-loader');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 // To copy some asset from project folder to dist folder we can use copy-webpack-plugin
 //const CopyPlugin = require('copy-webpack-plugin');
 
@@ -13,18 +12,18 @@ module.exports = (env = {}, options) => {
     return {
         entry: './src/index.js',
         output: {
-            filename: 'index.[contenthash:8].js',
-            path: path.resolve(__dirname, './dist'),
-            publicPath: ''
+            filename: 'index.[contenthash:8].js',
+            path: path.resolve(__dirname, './dist'),
+            publicPath: ''
         },
         mode: isProduction ? 'production' : 'development',
         devServer: {
-            open: true,
+            open: true,
             contentBase: path.join(__dirname, 'dist'),
         },
         plugins: [
-            new CleanWebpackPlugin(),
-            new HtmlWebpackPlugin({
+            new CleanWebpackPlugin(),
+            new HtmlWebpackPlugin({
                 title: 'Webpack starter project',
                 template: './src/index.html',
                 minify: isProduction
@@ -43,11 +42,11 @@ module.exports = (env = {}, options) => {
         module: {
             rules: [
                 {
-                    test: /\.html$/,
+                    test: /\.html$/,
                     use: ['html-loader']
                 },
                 {
-                    test: /\.(png|jpe?g|gif)$/,
+                    test: /\.(png|jpe?g|gif)$/,
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
@@ -55,25 +54,25 @@ module.exports = (env = {}, options) => {
                     }
                 },
                 {
-                    test: /\.scss$/i,
-                    use: [
-                         MiniCssExtractPlugin.loader,
+                    test: /\.scss$/i,
+                    use: [
+                         MiniCssExtractPlugin.loader,
                         // This loader resolves url() and @imports inside CSS
                         'css-loader',
                         'postcss-loader',
-                         // Compiles Sass to CSS
-                         'sass-loader'
+                         // Compiles Sass to CSS
+                         'sass-loader'
                         
                     ]
                 },
                 {
-                    test: /\.m?js$/,
-                    exclude: /(node_modules|bower_components)/,
+                    test: /\.m?js$/,
+                    exclude: /(node_modules|bower_components)/,
                     use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env'],
-                            plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-proposal-object-rest-spread']
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env'],
+                            plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-proposal-object-rest-spread']
                         }
                     }
                 },
@@ -82,5 +81,3 @@ module.exports = (env = {}, options) => {
         }
     }
 }
-
-
